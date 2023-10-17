@@ -9,7 +9,7 @@ const InterviewData = () => {
   useEffect(() => {
     async function fetchForms() {
       try {
-        const response = await fetch('http://localhost:8000/interviewdata');
+        const response = await fetch('https://interview-backend-p341.onrender.com/interviewdata');
         const data = await response.json();
         setInterviewData(data);
       } catch (error) {

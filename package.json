@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000/",
+  "proxy": "https://interview-backend-p341.onrender.com/",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.11.0",

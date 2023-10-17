@@ -22,7 +22,7 @@ const Login = ({isUserAuthenticated}) => {
     const { email, password } = login;
 
     try {
-      const res = await fetch("/login", {
+      const res = await fetch("https://interview-backend-p341.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

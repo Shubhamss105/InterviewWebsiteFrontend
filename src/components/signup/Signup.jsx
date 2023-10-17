@@ -28,7 +28,7 @@ const Signup = () => {
     }
 
     try {
-      const res = await fetch("/signup", {
+      const res = await fetch("https://interview-backend-p341.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

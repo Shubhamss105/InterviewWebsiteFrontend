@@ -32,7 +32,7 @@ const Contribute = () => {
     e.preventDefault();
     const {name,collegeName,company,jobTitle,resumeScreening,round1Name,round1,round2Name,round2,round3Name,round3,round4Name,round4,round5Name,round5}=data;
 
-    const res=await fetch('/contribute',{
+    const res=await fetch('https://interview-backend-p341.onrender.com/contribute',{
         method:"POST",
         headers:{
             "Content-Type":'application/json'
