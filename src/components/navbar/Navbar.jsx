@@ -1,96 +1,148 @@
-import React from 'react'
-import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import { DataContext } from '../../context/DataProvider';
 
-const Navbar = () => {
-    const {account}=useContext(DataContext);
+'use client'
+import { useContext } from "react";
+import { DataContext } from "../../context/DataProvider";
+
+
+import { NavLink } from 'react-router-dom';
+
+import React from 'react'
+import { Menu, X } from 'lucide-react'
+
+const menuItems = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'Details',
+    href: '/details',
+  },
+  {
+    name: 'Contribute',
+    href: '/contribute',
+  },
+]
+
+ function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const { isLoggedIn } = useContext(DataContext);
+
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   return (
-    <>
-      
-<div>
-    <nav className="bg-white   shadow m-auto ">
-        <div className="px-8 mx-auto max-w-7xl position-fixed">
-            <div className="flex items-center justify-between h-16">
-                <div className="w-full justify-between flex items-center">
-                    <NavLink to="/" className="flex-shrink-0" >
-                        <img className="w-8 h-8" src="/icons/rocket.svg" alt="Workflow"/>
-                    </NavLink>
-                    <div className="hidden md:block">
-                        <div className="flex items-baseline ml-10 space-x-4">
-                            <NavLink className="text-gray-800  hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" to="/">
-                                Home
-                            </NavLink>
-                            <NavLink className="text-gray-800   hover:text-gray-900  px-3 py-2 rounded-md text-sm font-medium"to="/details">
-                                Details
-                            </NavLink>
-                            <NavLink className="text-gray-800  hover:text-gray-900  px-3 py-2 rounded-md text-sm font-medium" to="/">
-                                Content
-                            </NavLink>
-                            <NavLink className="text-gray-800  hover:text-gray-900  px-3 py-2 rounded-md text-sm font-medium" to="/">
-                                Contact
-                            </NavLink>
-                            
-                              {
-                                account?<p>Welcome {account}</p>
-                                :
-                                <button type="button" className="py-1 px-2  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                                <NavLink to='/login'>Login</NavLink>
-                              </button>
-                              }
-
-                              
-                                {/* <button type="button" className="py-1 px-2 border-indigo-700 hover:bg-indigo-600 hover:text-white  focus:ring-offset-indigo-200 text-indigo-600 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                                <NavLink to='/login'>Login</NavLink>
-                                </button> */}
-
-
-                              
-                            <button type="button" className="py-1 px-2  bg-pink-600 hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full">
-                                <NavLink to='/contribute'>Contribute</NavLink>
-                            </button>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div className="block">
-                    <div className="flex items-center ml-4 md:ml-6">
-                    </div>
-                </div>
-                <div className="flex -mr-2 md:hidden">
-                    <button className="text-gray-800 dark:text-white hover:text-gray-300 inline-flex items-center justify-center p-2 rounded-md focus:outline-none">
-                        <svg width="20" height="20" fill="currentColor" className="w-8 h-8" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z">
-                            </path>
-                        </svg>
+    <div className="relative w-full bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+        <div className="inline-flex items-center space-x-2">
+          <span>
+            <NavLink to='/'>
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 50 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23.2732 0.2528C20.8078 1.18964 2.12023 12.2346 1.08477 13.3686C0 14.552 0 14.7493 0 27.7665C0 39.6496 0.0986153 41.1289 0.83823 42.0164C2.12023 43.5449 23.2239 55.4774 24.6538 55.5267C25.9358 55.576 46.1027 44.3832 48.2229 42.4602C49.3077 41.474 49.3077 41.3261 49.3077 27.8158C49.3077 14.3055 49.3077 14.1576 48.2229 13.1714C46.6451 11.7415 27.1192 0.450027 25.64 0.104874C24.9497 -0.0923538 23.9142 0.00625992 23.2732 0.2528ZM20.2161 21.8989C20.2161 22.4906 18.9835 23.8219 17.0111 25.3997C15.2361 26.7803 13.8061 27.9637 13.8061 28.0623C13.8061 28.1116 15.2361 29.0978 16.9618 30.2319C18.6876 31.3659 20.2655 32.6479 20.4134 33.0917C20.8078 34.0286 19.871 35.2119 18.8355 35.2119C17.8001 35.2119 9.0233 29.3936 8.67815 28.5061C8.333 27.6186 9.36846 26.5338 14.3485 22.885C17.6521 20.4196 18.4904 20.0252 19.2793 20.4196C19.7724 20.7155 20.2161 21.3565 20.2161 21.8989ZM25.6893 27.6679C23.4211 34.9161 23.0267 35.7543 22.1391 34.8668C21.7447 34.4723 22.1391 32.6479 23.6677 27.9637C26.2317 20.321 26.5275 19.6307 27.2671 20.3703C27.6123 20.7155 27.1685 22.7864 25.6893 27.6679ZM36.0932 23.2302C40.6788 26.2379 41.3198 27.0269 40.3337 28.1609C39.1503 29.5909 31.6555 35.2119 30.9159 35.2119C29.9298 35.2119 28.9436 33.8806 29.2394 33.0424C29.3874 32.6479 30.9652 31.218 32.7403 29.8867L35.9946 27.4706L32.5431 25.1532C30.6201 23.9205 29.0915 22.7371 29.0915 22.5892C29.0915 21.7509 30.2256 20.4196 30.9159 20.4196C31.3597 20.4196 33.6771 21.7016 36.0932 23.2302Z"
+                fill="black"
+              />
+            </svg>
+            </NavLink>
+          </span>
+          <span className="font-bold"> <NavLink to='/'>Interview Insights</NavLink> </span>
+        </div>
+        <div className="hidden grow items-start lg:flex">
+          <ul className="ml-12 inline-flex space-x-8">
+            {menuItems.map((item) => (
+              <li key={item.name}>
+                <NavLink
+                  to={item.href}
+                  className="text-sm font-semibold text-gray-800 hover:text-gray-900"
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="hidden lg:block">
+          {
+            isLoggedIn ? "":
+            <button
+            type="button"
+            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            <NavLink to="/login">Login</NavLink>
+          </button>
+          }
+        </div>
+        <div className="lg:hidden">
+          <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
+        </div>
+        {isMenuOpen && (
+          <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
+            <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="px-5 pb-6 pt-5">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center space-x-2">
+                    <span>
+                      <svg
+                        width="30"
+                        height="30"
+                        viewBox="0 0 50 56"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M23.2732 0.2528C20.8078 1.18964 2.12023 12.2346 1.08477 13.3686C0 14.552 0 14.7493 0 27.7665C0 39.6496 0.0986153 41.1289 0.83823 42.0164C2.12023 43.5449 23.2239 55.4774 24.6538 55.5267C25.9358 55.576 46.1027 44.3832 48.2229 42.4602C49.3077 41.474 49.3077 41.3261 49.3077 27.8158C49.3077 14.3055 49.3077 14.1576 48.2229 13.1714C46.6451 11.7415 27.1192 0.450027 25.64 0.104874C24.9497 -0.0923538 23.9142 0.00625992 23.2732 0.2528ZM20.2161 21.8989C20.2161 22.4906 18.9835 23.8219 17.0111 25.3997C15.2361 26.7803 13.8061 27.9637 13.8061 28.0623C13.8061 28.1116 15.2361 29.0978 16.9618 30.2319C18.6876 31.3659 20.2655 32.6479 20.4134 33.0917C20.8078 34.0286 19.871 35.2119 18.8355 35.2119C17.8001 35.2119 9.0233 29.3936 8.67815 28.5061C8.333 27.6186 9.36846 26.5338 14.3485 22.885C17.6521 20.4196 18.4904 20.0252 19.2793 20.4196C19.7724 20.7155 20.2161 21.3565 20.2161 21.8989ZM25.6893 27.6679C23.4211 34.9161 23.0267 35.7543 22.1391 34.8668C21.7447 34.4723 22.1391 32.6479 23.6677 27.9637C26.2317 20.321 26.5275 19.6307 27.2671 20.3703C27.6123 20.7155 27.1685 22.7864 25.6893 27.6679ZM36.0932 23.2302C40.6788 26.2379 41.3198 27.0269 40.3337 28.1609C39.1503 29.5909 31.6555 35.2119 30.9159 35.2119C29.9298 35.2119 28.9436 33.8806 29.2394 33.0424C29.3874 32.6479 30.9652 31.218 32.7403 29.8867L35.9946 27.4706L32.5431 25.1532C30.6201 23.9205 29.0915 22.7371 29.0915 22.5892C29.0915 21.7509 30.2256 20.4196 30.9159 20.4196C31.3597 20.4196 33.6771 21.7016 36.0932 23.2302Z"
+                          fill="black"
+                        />
+                      </svg>
+                    </span>
+                    <span className="font-bold">DevUI</span>
+                  </div>
+                  <div className="-mr-2">
+                    <button
+                      type="button"
+                      onClick={toggleMenu}
+                      className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                    >
+                      <span className="sr-only">Close menu</span>
+                      <X className="h-6 w-6" aria-hidden="true" />
                     </button>
+                  </div>
                 </div>
+                <div className="mt-6">
+                  <nav className="grid gap-y-4">
+                    {menuItems.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
+                      >
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          {item.name}
+                        </span>
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+                <button
+                  type="button"
+                  className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                  <NavLink to="/login">Login</NavLink>
+                </button>
+              </div>
             </div>
-        </div>
-        <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a className="text-gray-700 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/">
-                    Home
-                </a>
-                <a className="text-gray-700  block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Gallery
-                </a>
-                <a className="text-gray-700 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/">
-                    Content
-                </a>
-                <a className="text-gray-700 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/">
-                    Contact
-                </a>
-            </div>
-        </div>
-    </nav>
-  
-</div>
-
-    </>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
-
-export default Navbar
+export default Navbar;

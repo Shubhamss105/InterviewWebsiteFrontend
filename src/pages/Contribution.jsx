@@ -142,8 +142,6 @@ const Contribute = () => {
         <div class="flex flex-wrap">
             <div class="relative w-full mb-3">
 
-
-              
             <div class="w-full lg:w-6/12">
             <div class="relative w-full mb-3">
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -153,7 +151,6 @@ const Contribute = () => {
             </div>
           </div>
 
-
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Round 1
               </label>
@@ -161,7 +158,6 @@ const Contribute = () => {
             </div>
           </div>
         </div>
-
 
         <div class="flex flex-wrap">
           <div class="w-full lg:w-12/12 px-4">
@@ -242,7 +238,7 @@ const Contribute = () => {
     </div>
   </div>
 
-<button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-4 float-right ease-linear transition-all duration-150" type="button" onClick={handleClick}>
+<button class="bg-black hover:bg-black/80 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-4 float-right ease-linear transition-all duration-150" type="button" onClick={handleClick}>
           SUBMIT
         </button>
        
