@@ -149,7 +149,7 @@ const Signup = () => {
           </form>
         </div>
         <div className="flex items-center justify-center mt-6">
-          <Link to="/login" className="inline-flex items-center text-sm font-thin text-center text-black hover:text-black/80">
+          <Link to="/login" className="inline-flex items-center text-sm font-bold text-center text-black hover:text-black/80">
             Already have an account? Login Here
           </Link>
         </div>

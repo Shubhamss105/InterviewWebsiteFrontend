@@ -127,7 +127,7 @@ const Login = ({isUserAuthenticated}) => {
           </form>
         </div>
         <div className="flex items-center justify-center mt-6">
-          <Link to="/signup" className="inline-flex items-center text-sm font-thin text-center text-black hover:text-black/80">
+          <Link to="/signup" className="inline-flex items-center text-sm font-bold text-center text-black hover:text-black/80">
             Don't have an account? Signup Here
           </Link>
         </div>
