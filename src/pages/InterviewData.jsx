@@ -1,19 +1,27 @@
 import React from "react";
 import { useState,useEffect } from "react";
+import { FaSpinner } from "react-icons/fa"; 
+
 
 const InterviewData = () => {
 
   const [interviewdata, setInterviewData] = useState([]);
   const [search,setSearch]=useState("")
+  const [isFetching, setIsFetching] = useState(false); 
+
 
   useEffect(() => {
     async function fetchForms() {
       try {
+      setIsFetching(true); // Set isFetching to true when fetching data
+
         const response = await fetch('https://interview-backend-p341.onrender.com/interviewdata');
         const data = await response.json();
         setInterviewData(data);
       } catch (error) {
         console.error(error);
+      }finally {
+        setIsFetching(false); // Set isFetching back to false after data is fetched
       }
     }
 
@@ -41,7 +49,12 @@ const InterviewData = () => {
   </div>
 </div>
 
-{interviewdata
+{
+  isFetching?(
+    <FaSpinner className="animate-spin mx-auto text-5xl" />
+  ):(
+    <>
+    {interviewdata
   .filter((info) => {
     const searchTerm = search.toLowerCase();
     if (searchTerm === '') return true; // Show all data if search is empty
@@ -120,6 +133,10 @@ const InterviewData = () => {
       )}
     </div>
   ))
+}
+
+    </>
+  )
 }
 
                 
