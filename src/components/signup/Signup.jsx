@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 // import { DataContext } from "../../context/DataProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaSpinner } from "react-icons/fa"; 
+
+
 const Signup = () => {
   const navigate = useNavigate();
   
@@ -13,6 +16,9 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  const [isFetching, setIsFetching] = useState(false); 
+
 
   const handleChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
@@ -28,6 +34,7 @@ const Signup = () => {
     }
 
     try {
+      setIsFetching(true);
       const res = await fetch("https://interview-backend-p341.onrender.com/signup", {
         method: "POST",
         headers: {
@@ -57,6 +64,8 @@ const Signup = () => {
       console.error(error);
       setError("Something went wrong on the server");
       toast.error("Something went wrong on the server");
+    }finally {
+      setIsFetching(false); // Set isFetching back to false after data is fetched
     }
   };
 
@@ -143,7 +152,11 @@ const Signup = () => {
                 className="py-2 px-4  bg-black hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                 onClick={handleClick}
               >
-                Signup
+                {isFetching ? (
+                  <FaSpinner className="animate-spin mx-auto"  /> // Display the spinner when isFetching is true
+                ) : (
+                  "Signup"
+                )}
               </button>
             </div>
           </form>
