@@ -24,7 +24,7 @@ export function Hero() {
             <p className="text-sm font-medium">Get Interview Insights &rarr;</p>
           </div>
           <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
-          Discover a Company that Deserver you
+          Beyond the Resume: Real Interviews, Real Stories
           </h1>
           <p className="mt-4 text-lg text-gray-700">
           Bridging the Gap Between Job Seekers and Employers!
